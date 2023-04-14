@@ -2,7 +2,7 @@ Projeto Lógico:
 
 1. Seleção (Confederação Nacional, end_CEP, end_Detalhe …)
 
-2. Técnico (ConfederaçaoNacional, …)
+2. Técnico (ConfederaçaoNacional, Nome, …)
   ConfederaçaoNacional ⇒ Seleção (Confederação Nacional)
 
 3. Campeonato (Ano, …)
@@ -11,7 +11,7 @@ Projeto Lógico:
 
 5. País (Nome, …)
 
-6. Jogo (ID Artificial, Data, Seleção_Mandante! , Seleção_Visitante! , …)
+6. Jogo (ID Artificial, Data, Seleção_Mandante!, Seleção_Visitante!…)
    Seleção_Mandante⇒ Seleção (Confederação Nacional)
    Seleção_Visitante ⇒ Seleção (Confederação Nacional)
 
