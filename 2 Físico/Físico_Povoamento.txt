@@ -1,0 +1,237 @@
+INSERT INTO PAIS VALUES ('Brasil', 'América do Sul');
+INSERT INTO PAIS VALUES ('Argentina', 'América do Sul');
+INSERT INTO PAIS VALUES ('Croácia', 'Europa');
+INSERT INTO PAIS VALUES ('França', 'Europa');
+INSERT INTO PAIS VALUES ('Austrália', 'Oceania');
+INSERT INTO PAIS VALUES ('Inglaterra', 'Europa');
+INSERT INTO PAIS VALUES ('Espanha', 'Europa');
+INSERT INTO PAIS VALUES ('Alemanha', 'Europa');
+INSERT INTO PAIS VALUES ('Países Baixos', 'Europa');
+INSERT INTO PAIS VALUES ('Estados Unidos', 'América do Norte');
+INSERT INTO PAIS VALUES ('Escócia', 'Europa');
+INSERT INTO PAIS VALUES ('Japão', 'Ásia');
+INSERT INTO PAIS VALUES ('Itália', 'Europa');
+
+INSERT INTO SELECAO VALUES ('CBF', '22775-055', 'Avenida Luís Carlos Prestes', '130', 'Brasil');
+INSERT INTO SELECAO VALUES ('AFA', 'C1053ACB', 'Viamonte', '1366', 'Argentina');
+INSERT INTO SELECAO VALUES ('HNS', '10000', 'Ulica grada Vukovara', '269a', 'Croácia');
+INSERT INTO SELECAO VALUES ('FFA', '2000', 'Shelley Street', '1', 'Austrália');
+INSERT INTO SELECAO VALUES ('FFF', '75015', 'Boulevard de Grenelle', '87', 'França');    
+
+INSERT INTO TECNICO VALUES ('CBF', 'Tite', TO_DATE('25/05/1961','DD/MM/YYYY')); 
+INSERT INTO TECNICO VALUES ('AFA', 'Lionel Scaloni', TO_DATE('16/05/1978','DD/MM/YYYY')); 
+INSERT INTO TECNICO VALUES ('HNS', 'Zlatko Dalic', TO_DATE('26/10/1966','DD/MM/YYYY'));
+INSERT INTO TECNICO VALUES ('FFA', 'Graham Arnold', TO_DATE('03/08/1963','DD/MM/YYYY'));
+INSERT INTO TECNICO VALUES ('FFF', 'Didier Deschamps', TO_DATE('15/10/1968','DD/MM/YYYY'));
+
+INSERT INTO CAMPEONATO VALUES (2022);
+INSERT INTO CAMPEONATO VALUES (2018);
+INSERT INTO CAMPEONATO VALUES (2014);
+INSERT INTO CAMPEONATO VALUES (2010);
+INSERT INTO CAMPEONATO VALUES (2006);
+INSERT INTO CAMPEONATO VALUES (2002);
+
+INSERT INTO EMISSORA VALUES ('27865757000102', 'Globo');
+INSERT INTO EMISSORA VALUES ('33568718149', 'TyC Sports');
+INSERT INTO EMISSORA VALUES ('68419124305', 'HRT');
+INSERT INTO EMISSORA VALUES ('91314398574', 'SBS');
+INSERT INTO EMISSORA VALUES ('539007435', 'BeIN Sports');
+
+INSERT INTO TIMES VALUES ('Liverpool', 'Inglaterra');
+INSERT INTO TIMES VALUES ('Chelsea', 'Inglaterra');
+INSERT INTO TIMES VALUES ('Manchester United', 'Inglaterra');
+INSERT INTO TIMES VALUES ('Tottenham', 'Inglaterra');
+INSERT INTO TIMES VALUES ('Aston Villa', 'Inglaterra');
+INSERT INTO TIMES VALUES ('Manchester City', 'Inglaterra');
+INSERT INTO TIMES VALUES ('PSG', 'França');
+INSERT INTO TIMES VALUES ('Atletico Madrid', 'Espanha');
+INSERT INTO TIMES VALUES ('Barcelona', 'Espanha');
+INSERT INTO TIMES VALUES ('Real Madrid', 'Espanha');
+INSERT INTO TIMES VALUES ('Dinamo Zagreb', 'Croácia');
+INSERT INTO TIMES VALUES ('RB Leipzig', 'Alemanha');
+INSERT INTO TIMES VALUES ('Hoffenheim', 'Alemanha');
+INSERT INTO TIMES VALUES ('AZ', 'Países Baixos');
+INSERT INTO TIMES VALUES ('Columbus Crew', 'Estados Unidos');
+INSERT INTO TIMES VALUES ('Heart', 'Austrália');
+INSERT INTO TIMES VALUES ('Celtic', 'Escócia');
+INSERT INTO TIMES VALUES ('Machida', 'Japão');
+INSERT INTO TIMES VALUES ('Milan', 'Itália');
+
+INSERT INTO JOGO VALUES (seq_jogo.nextval, TO_DATE('22/11/2022','DD/MM/YYYY'), 'Grupos', 'FFF', 'FFA');
+INSERT INTO JOGO VALUES (seq_jogo.nextval, TO_DATE('03/12/2022','DD/MM/YYYY'), 'Oitavas', 'AFA', 'FFA');
+INSERT INTO JOGO VALUES (seq_jogo.nextval, TO_DATE('09/12/2022','DD/MM/YYYY'), 'Quartas', 'HNS', 'CBF');
+INSERT INTO JOGO VALUES (seq_jogo.nextval, TO_DATE('13/12/2022','DD/MM/YYYY'), 'Semifinal', 'AFA', 'HNS');
+INSERT INTO JOGO VALUES (seq_jogo.nextval, TO_DATE('18/12/2022','DD/MM/YYYY'), 'Final', 'AFA', 'FFF');
+
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '1', 'Alisson', 'CBF', 'Liverpool');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '3', 'Thiago Silva', 'CBF', 'Chelsea');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '5', 'Casemiro', 'CBF', 'Manchester United');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '9', 'Richarlison', 'CBF', 'Tottenham');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '10', 'Neymar', 'CBF', 'PSG');
+
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '23', 'Emiliano Martinez', 'AFA', 'Aston Villa');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '13', 'Romero', 'AFA', 'Tottenham');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '7', 'De Paul', 'AFA', 'Atletico Madrid');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '9', 'Julian Alvarez', 'AFA', 'Manchester City');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '10', 'Messi', 'AFA', 'PSG');
+
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '1', 'Livakovic', 'HNS', 'Dinamo Zagreb');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '20', 'Gvardiol', 'HNS', 'RB Leipzig');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '8', 'Kovacic', 'HNS', 'Chelsea');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '10', 'Modric', 'HNS', 'Real Madrid');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '9', 'Kramaric', 'HNS', 'Hoffenheim');
+
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '1', 'Matthew Ryan', 'FFA', 'AZ');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '2', 'Degenek', 'FFA', 'Columbus Crew');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '4', 'Rowles', 'FFA', 'Heart');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '13', 'Mooy', 'FFA', 'Celtic');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '15', 'Duke', 'FFA', 'Machida');
+
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '1', 'Hugo Lloris', 'FFF', 'Tottenham');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '5', 'Kounde', 'FFF', 'Barcelona');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '19', 'Theo', 'FFF', 'Milan');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '7', 'Griezmann', 'FFF', 'Atletico Madrid');
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '9', 'Giroud', 'FFF', 'Milan');
+
+INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '23', 'Ederson', 'CBF', 'Manchester City');
+
+INSERT INTO REDE_SOCIAL VALUES (1, 'Instagram', 'alissonbecker');
+INSERT INTO REDE_SOCIAL VALUES (1, 'Twitter', 'alissonbecker');
+INSERT INTO REDE_SOCIAL VALUES (2, 'Instagram', 'thiagosilva');
+INSERT INTO REDE_SOCIAL VALUES (2, 'Twitter', 'tsilva3');
+INSERT INTO REDE_SOCIAL VALUES (3, 'Instagram', 'casemiro');
+INSERT INTO REDE_SOCIAL VALUES (3, 'Twitter', 'casemiro');
+INSERT INTO REDE_SOCIAL VALUES (4, 'Instagram', 'richarlison');
+INSERT INTO REDE_SOCIAL VALUES (4, 'Twitter', 'richarlison97');
+INSERT INTO REDE_SOCIAL VALUES (5, 'Instagram', 'neymarjr');
+INSERT INTO REDE_SOCIAL VALUES (5, 'Twitter', 'neymarjr');
+
+INSERT INTO REDE_SOCIAL VALUES (6, 'Instagram', 'emi_martinez26');
+INSERT INTO REDE_SOCIAL VALUES (6, 'Twitter', 'emimartinezz1');
+INSERT INTO REDE_SOCIAL VALUES (7, 'Instagram', 'cutiromero2');
+INSERT INTO REDE_SOCIAL VALUES (7, 'Twitter', 'cutiromero2');
+INSERT INTO REDE_SOCIAL VALUES (8, 'Instagram', 'rodridepaul');
+INSERT INTO REDE_SOCIAL VALUES (8, 'Twitter', 'rodridepaul');
+INSERT INTO REDE_SOCIAL VALUES (9, 'Instagram', 'juliaanalvarez');
+INSERT INTO REDE_SOCIAL VALUES (9, 'Twitter', 'julianalvarezzz');
+INSERT INTO REDE_SOCIAL VALUES (10, 'Instagram', 'leomessi');
+
+INSERT INTO REDE_SOCIAL VALUES (11, 'Instagram', 'dominiklivakovic40');
+INSERT INTO REDE_SOCIAL VALUES (12, 'Instagram', 'josko_gvardiol');
+INSERT INTO REDE_SOCIAL VALUES (13, 'Twitter', 'mateokovacic8');
+INSERT INTO REDE_SOCIAL VALUES (13, 'Instagram', 'mateokovacic8');
+INSERT INTO REDE_SOCIAL VALUES (14, 'Twitter', 'lukamodric10');
+INSERT INTO REDE_SOCIAL VALUES (14, 'Instagram', 'lukamodric10');
+INSERT INTO REDE_SOCIAL VALUES (15, 'Twitter', 'andrejkramaric9');
+INSERT INTO REDE_SOCIAL VALUES (15, 'Instagram', 'andrejkramaric');
+INSERT INTO REDE_SOCIAL VALUES (17, 'Instagram', 'milosdegenek');
+INSERT INTO REDE_SOCIAL VALUES (17, 'Twitter', 'milosdegenek45');
+INSERT INTO REDE_SOCIAL VALUES (18, 'Instagram', 'breadrowles');
+INSERT INTO REDE_SOCIAL VALUES (18, 'Twitter', 'kyerowles');
+INSERT INTO REDE_SOCIAL VALUES (19, 'Instagram', 'aaronmooy');
+INSERT INTO REDE_SOCIAL VALUES (19, 'Twitter', 'aaronmooy');
+INSERT INTO REDE_SOCIAL VALUES (20, 'Instagram', 'mitchellduke');
+
+INSERT INTO REDE_SOCIAL VALUES (22, 'Instagram', 'jkeey4');
+INSERT INTO REDE_SOCIAL VALUES (22, 'Twitter', 'jkeey4');
+INSERT INTO REDE_SOCIAL VALUES (23, 'Instagram', 'theo3hernandez');
+INSERT INTO REDE_SOCIAL VALUES (23, 'Twitter', 'theohernandez');
+INSERT INTO REDE_SOCIAL VALUES (24, 'Instagram', 'antogriezmann');
+INSERT INTO REDE_SOCIAL VALUES (24, 'Twitter', 'antogriezmann');
+INSERT INTO REDE_SOCIAL VALUES (25, 'Instagram', 'oliviergiroud');
+INSERT INTO REDE_SOCIAL VALUES (25, 'Twitter', 'oliviergiroud');
+
+INSERT INTO REDE_SOCIAL VALUES (26, 'Instagram', 'ederson93');
+
+INSERT INTO GOLEIRO VALUES (1, NULL);
+INSERT INTO GOLEIRO VALUES (6, NULL);
+INSERT INTO GOLEIRO VALUES (11, NULL);
+INSERT INTO GOLEIRO VALUES (16, NULL);
+INSERT INTO GOLEIRO VALUES (21, NULL);
+INSERT INTO GOLEIRO VALUES (26, 1);
+
+INSERT INTO DE_LINHA VALUES (2, 'Defensor');
+INSERT INTO DE_LINHA VALUES (3, 'Meia');
+INSERT INTO DE_LINHA VALUES (4, 'Atacante');
+INSERT INTO DE_LINHA VALUES (5, 'Atacante');
+INSERT INTO DE_LINHA VALUES (7, 'Defensor');
+INSERT INTO DE_LINHA VALUES (8, 'Meia');
+INSERT INTO DE_LINHA VALUES (9, 'Atacante');
+INSERT INTO DE_LINHA VALUES (10, 'Atacante');
+INSERT INTO DE_LINHA VALUES (12, 'Defensor');
+INSERT INTO DE_LINHA VALUES (13, 'Meia');
+INSERT INTO DE_LINHA VALUES (14, 'Meia');
+INSERT INTO DE_LINHA VALUES (15, 'Atacante');
+INSERT INTO DE_LINHA VALUES (17, 'Defensor');
+INSERT INTO DE_LINHA VALUES (18, 'Defensor');
+INSERT INTO DE_LINHA VALUES (19, 'Meia');
+INSERT INTO DE_LINHA VALUES (20, 'Atacante');
+INSERT INTO DE_LINHA VALUES (22, 'Defensor');
+INSERT INTO DE_LINHA VALUES (23, 'Defensor');
+INSERT INTO DE_LINHA VALUES (24, 'Atacante');
+INSERT INTO DE_LINHA VALUES (25, 'Atacante');
+
+INSERT INTO PODIO VALUES (1);
+INSERT INTO PODIO VALUES (2);
+INSERT INTO PODIO VALUES (3);
+
+INSERT INTO COMPETIU VALUES ('CBF', 2022, NULL);
+INSERT INTO COMPETIU VALUES ('CBF', 2018, NULL);
+INSERT INTO COMPETIU VALUES ('CBF', 2014, NULL);
+INSERT INTO COMPETIU VALUES ('CBF', 2010, NULL);
+INSERT INTO COMPETIU VALUES ('CBF', 2006, NULL);
+INSERT INTO COMPETIU VALUES ('CBF', 2002, 1);
+
+INSERT INTO COMPETIU VALUES ('AFA', 2022, 1);
+INSERT INTO COMPETIU VALUES ('AFA', 2018, NULL);
+INSERT INTO COMPETIU VALUES ('AFA', 2014, 2);
+INSERT INTO COMPETIU VALUES ('AFA', 2010, NULL);
+INSERT INTO COMPETIU VALUES ('AFA', 2006, NULL);
+INSERT INTO COMPETIU VALUES ('AFA', 2002, 1);
+
+INSERT INTO COMPETIU VALUES ('HNS', 2022, 3);
+INSERT INTO COMPETIU VALUES ('HNS', 2018, 2);
+INSERT INTO COMPETIU VALUES ('HNS', 2014, NULL);
+INSERT INTO COMPETIU VALUES ('HNS', 2006, NULL);
+INSERT INTO COMPETIU VALUES ('HNS', 2002, NULL);
+
+INSERT INTO COMPETIU VALUES ('FFA', 2022, NULL);
+INSERT INTO COMPETIU VALUES ('FFA', 2018, NULL);
+INSERT INTO COMPETIU VALUES ('FFA', 2014, NULL);
+INSERT INTO COMPETIU VALUES ('FFA', 2010, NULL);
+INSERT INTO COMPETIU VALUES ('FFA', 2006, NULL);
+
+INSERT INTO COMPETIU VALUES ('FFF', 2022, 2);
+INSERT INTO COMPETIU VALUES ('FFF', 2018, 1);
+INSERT INTO COMPETIU VALUES ('FFF', 2014, NULL);
+INSERT INTO COMPETIU VALUES ('FFF', 2010, NULL);
+INSERT INTO COMPETIU VALUES ('FFF', 2006, 2);
+INSERT INTO COMPETIU VALUES ('FFF', 2002, NULL);
+
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 1, 'TV Aberta');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 1, 'TV Fechada');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 1, 'Streaming');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 2, 'TV Aberta');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 2, 'TV Fechada');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 2, 'Streaming');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 3, 'TV Aberta');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 3, 'TV Fechada');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 3, 'Streaming');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 4, 'TV Aberta');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 4, 'TV Fechada');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 4, 'Streaming');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 5, 'TV Aberta');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 5, 'TV Fechada');
+INSERT INTO TRANSMISSAO VALUES ('27865757000102', 'Brasil', 5, 'Streaming');
+INSERT INTO TRANSMISSAO VALUES ('33568718149', 'Argentina', 2, 'TV Fechada');
+INSERT INTO TRANSMISSAO VALUES ('33568718149', 'Argentina', 4, 'TV Fechada');
+INSERT INTO TRANSMISSAO VALUES ('33568718149', 'Argentina', 5, 'TV Fechada');
+INSERT INTO TRANSMISSAO VALUES ('68419124305', 'Croácia', 3, 'TV Aberta');
+INSERT INTO TRANSMISSAO VALUES ('68419124305', 'Croácia', 4, 'TV Aberta');
+INSERT INTO TRANSMISSAO VALUES ('68419124305', 'Croácia', 5, 'TV Aberta');
+INSERT INTO TRANSMISSAO VALUES ('91314398574', 'Austrália', 1, 'TV Aberta');
+INSERT INTO TRANSMISSAO VALUES ('91314398574', 'Austrália', 2, 'TV Aberta');
+INSERT INTO TRANSMISSAO VALUES ('91314398574', 'Austrália', 5, 'TV Aberta');
+INSERT INTO TRANSMISSAO VALUES ('539007435', 'França', 1, 'TV Fechada');
+INSERT INTO TRANSMISSAO VALUES ('539007435', 'França', 4, 'TV Fechada');
+INSERT INTO TRANSMISSAO VALUES ('539007435', 'França', 5, 'TV Fechada');
