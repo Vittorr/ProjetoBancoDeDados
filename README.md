@@ -38,10 +38,14 @@
   - Subconsulta do tipo escalar, do tipo linha, do tipo tabela
   - Operação de conjunto
 
-OBS: Cada aluno deve fazer ao menos 1 dessas consultas mais 1 procedimento com SQL embutida e parâmetro, função com SQL embutida e parâmetro ou gatilho.
+## :books: Sobre a modelagem
+- <Explicação da modelagem>
 
-  
+## :house: Sobre o povoamento
+- <Explicação do povoamento>
 
+## :apple: Sobre as consultas
+- <Explicação das consultas>
 
 
 
