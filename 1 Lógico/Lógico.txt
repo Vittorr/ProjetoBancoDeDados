@@ -3,7 +3,7 @@ Projeto Lógico
 1. País (Nome, Continente …)
 
 2. Seleção (Confederação Nacional, end_CodigoPostal, end_Logradouro, end_Numero, [nomePais]! , …)
-nomePais => País(Nome)
+  nomePais => País(Nome)
 
 3. Técnico (ConfederaçaoNacional, Nome, DataNascimento, …)
   ConfederaçaoNacional ⇒ Seleção (Confederação Nacional)
@@ -17,21 +17,21 @@ nomePais => País(Nome)
    Seleção_Visitante ⇒ Seleção (Confederação Nacional)
 
 7. Time (Nome, nomePais! , …)
-nomePais => País(Nome)
+  nomePais => País(Nome)
 
 8. Jogador (ID Artificial, ConfederaçaoNacional! , Nome, Numero Camisa, nomeTime,  …)
 ConfederaçaoNacional ⇒ Seleção (Confederação Nacional)
-nomeTime => Time(Nome)
+  nomeTime => Time(Nome)
 
 8.1 Rede_Social (ID, Arroba, Plataforma)
 ID => Jogador(ID Artificial)
 
 9. Goleiro (ID, goleiro_Titular, …)
-ID => Jogador(ID Artificial)
-goleiro_Titular ⇒ Goleiro (ID)
+  ID => Jogador(ID Artificial)
+  goleiro_Titular ⇒ Goleiro (ID)
 
 10. De linha (ID, posição …)
-ID => Jogador(ID Artificial)
+  ID => Jogador(ID Artificial)
 
 11. Pódio (Posição, …)
 
@@ -44,4 +44,3 @@ ID => Jogador(ID Artificial)
    CadastroEmpresa ⇒ Emissora (CadastroEmpresa)
    NomePais ⇒ País (Nome)
    IDdoJogo ⇒ Jogo (ID Artificial)
-   
