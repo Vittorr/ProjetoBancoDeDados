@@ -50,20 +50,18 @@
   - Brasil (CBF); 
   - Croácia (HNS); 
   - França (FFF).
-  
 - Com isso, temos como base:
   - 5 seleções;
   - 5 técnicos;
   - 129 jogadores (26 por seleção*);
     - 15 goleiros;
     - 114 jogadores de linha;
+    - *O francês Karim Benzema foi cortado por lesão antes do torneio começar.
   - 70 clubes de futebol;
   - 17 países;
   - 5 emissoras;
   - 5 jogos/partidas;
   - 43 redes sociais (~8 por seleção).
-
-* O jogador francês Karim Benzema foi cortado por lesão antes do torneio começar.
 
 ## :apple: Sobre as consultas
 - <Explicação das consultas>
