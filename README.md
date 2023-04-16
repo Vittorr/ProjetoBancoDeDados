@@ -58,7 +58,7 @@
     - 114 jogadores de linha;
     - *O francês Karim Benzema foi cortado por lesão antes do torneio começar.
   - 70 clubes de futebol;
-  - 17 países;
+  - 37 países;
   - 5 emissoras;
   - 5 jogos/partidas;
   - 43 redes sociais (~8 por seleção).
