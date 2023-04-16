@@ -42,7 +42,28 @@
 - <Explicação da modelagem>
 
 ## :house: Sobre o povoamento
-- <Explicação do povoamento>
+- O escopo do povoamento do banco foi reduzido para que a massa de dados não se tornasse muito extensa;
+- Para que fosse mantida a coerência no banco, foram escolhidas cinco seleções que jogaram entre si durante o torneio;
+- Assim sendo, as informações do banco englobam apenas as seguintes confederações:
+  - Argentina (AFA); 
+  - Austrália (FFA); 
+  - Brasil (CBF); 
+  - Croácia (HNS); 
+  - França (FFF).
+  
+- Com isso, temos como base:
+  - 5 seleções;
+  - 5 técnicos;
+  - 129 jogadores (26 por seleção*);
+    - 15 goleiros;
+    - 114 jogadores de linha;
+  - 70 clubes de futebol;
+  - 17 países;
+  - 5 emissoras;
+  - 5 jogos/partidas;
+  - 43 redes sociais (~8 por seleção).
+
+* O jogador francês Karim Benzema foi cortado por lesão antes do torneio começar.
 
 ## :apple: Sobre as consultas
 - <Explicação das consultas>
