@@ -24,7 +24,7 @@ INSERT INTO PAIS VALUES('Polônia', 'Europa');
 INSERT INTO PAIS VALUES('México', 'América do Norte');
 INSERT INTO PAIS VALUES('Arábia Saudita', 'Ásia');
 INSERT INTO PAIS VALUES('Dinamarca', 'Europa');
-INSERT INTO PAIS VALUES('Tunisia', 'África');
+INSERT INTO PAIS VALUES('Tunísia', 'África');
 INSERT INTO PAIS VALUES('Costa Rica', 'América Central');
 INSERT INTO PAIS VALUES('Bélgica', 'Europa');
 INSERT INTO PAIS VALUES('Marrocos', 'África');
@@ -46,7 +46,7 @@ INSERT INTO SELECAO VALUES('KNVB', '3707 HX', 'Woudenbergseweg', '56', 'Holanda'
 INSERT INTO SELECAO VALUES('FEF', '090613', 'Av. Galo Plaza Lasso y Eloy Alfaro', NULL, 'Equador');
 INSERT INTO SELECAO VALUES('FSF', '13021', 'Rue 11', '3330', 'Senegal');
 INSERT INTO SELECAO VALUES('FA', 'SW1P 9EQ', 'Wembley Stadium', NULL, 'Inglaterra');
-INSERT INTO SELECAO VALUES('FFI', '19958-73781', 'St. Seoul', '4', 'Iran');
+INSERT INTO SELECAO VALUES('FFI', '19958-73781', 'St. Seoul', '4', 'Irã');
 INSERT INTO SELECAO VALUES('USSF', '60616', 'S. Prairie Avenue', '1801', 'Estados Unidos');
 INSERT INTO SELECAO VALUES('FAW', 'CF11 8AZ', 'Cardiff City Stadium', NULL, 'País de Gales');
 INSERT INTO SELECAO VALUES('PZPN', '02-366', 'ul. Bitwy Warszawskiej 1902', '7', 'Polônia');
