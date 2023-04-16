@@ -41,7 +41,7 @@ INSERT INTO SELECAO VALUES ('AFA', 'C1053ACB', 'Viamonte', '1366', 'Argentina');
 INSERT INTO SELECAO VALUES ('HNS', '10000', 'Ulica grada Vukovara', '269a', 'Croácia');
 INSERT INTO SELECAO VALUES ('FFA', '2000', 'Shelley Street', '1', 'Austrália');
 INSERT INTO SELECAO VALUES ('FFF', '75015', 'Boulevard de Grenelle', '87', 'França');
- INSERT INTO SELECAO VALUES('QFA', NULL, 'Al Wabb Street', '8181', 'Catar');
+INSERT INTO SELECAO VALUES('QFA', NULL, 'Al Wabb Street', '8181', 'Catar');
 INSERT INTO SELECAO VALUES('KNVB', '3707 HX', 'Woudenbergseweg', '56', 'Holanda');
 INSERT INTO SELECAO VALUES('FEF', '090613', 'Av. Galo Plaza Lasso y Eloy Alfaro', NULL, 'Equador');
 INSERT INTO SELECAO VALUES('FSF', '13021', 'Rue 11', '3330', 'Senegal');
