@@ -51,7 +51,7 @@
   - Croácia (HNS); 
   - França (FFF).
 - Com isso, temos como base:
-  - 5 seleções;
+  - 32 seleções (5 detalhadas);
   - 5 técnicos;
   - 129 jogadores (26 por seleção*);
     - 15 goleiros;
