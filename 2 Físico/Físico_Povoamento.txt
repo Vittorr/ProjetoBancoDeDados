@@ -298,7 +298,6 @@ INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '23', 'Alphonse Areola', 'FFF',
 INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '24', 'Ibrahima Konaté', 'FFF', 'Liverpool');
 INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '25', 'Eduardo Camavinga', 'FFF', 'Real Madrid');
 INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '26', 'Marcus Thuram', 'FFF', 'Borussia Monchengladbach');
-INSERT INTO JOGADOR VALUES (seq_jogador.nextval, '26', 'Marcus Thuram', 'FFF', 'Borussia Monchengladbach');
 
 INSERT INTO REDE_SOCIAL VALUES (1, 'Instagram', 'alissonbecker');
 INSERT INTO REDE_SOCIAL VALUES (1, 'Twitter', 'alissonbecker');
