@@ -1,12 +1,14 @@
 -- Mostrar nome dos jogadores que atuam em times do mesmo país que sua seleção, separados por seleção, mas somente se a seleção contém mais do que 3 jogadores atuando em times de seu país. (GROUP BY/HAVING)
 
-SELECT J.NOME
+SELECT J1.NOME
+FROM JOGADORES J1
+WHERE J1.FEDERACAO IN (SELECT J.FEDERACAO
 FROM JOGADORES J, SELECOES S, CLUBES C
 WHERE J.CLUBE = C.NOME
 AND C.PAIS = S.PAIS
 AND J.FEDERACAO = S.FEDERACAO
 GROUP BY J.FEDERACAO
-HAVING COUNT(*) > 3;
+HAVING COUNT(*) > 3);
 
 -- Mostrar nome do país das seleções que vão jogar um jogo, além de sua data. (INNER JOIN)
 
@@ -65,7 +67,7 @@ WHERE J1.NOME = 'Neymar Jr');
 
 -- Projetar os jogadores de cada seleção - e o seu país - que usam a mesma camisa que o Neymar (CONSULTA TABELA)
 
-SELECT S.PAIS, J.NOME
+SELECT J.NOME, S.PAIS
 FROM SELECOES S, JOGADORES J
 WHERE J.FEDERACAO = S.FEDERACAO
 AND J.NUMERO_CAMISA =
@@ -73,7 +75,7 @@ AND J.NUMERO_CAMISA =
 FROM JOGADORES J1
 WHERE J1.NOME = 'Neymar Jr');
 
--- Listar todas seleções e clubes (OPERAÇÃO DE CONJUNTO)
+-- Listar todas seleções e clubes (OPERAÇÃO DE CONJUNTO);
 
 SELECT NOME FROM CLUBES UNION (SELECT PAIS FROM SELECOES)
 
@@ -82,7 +84,7 @@ SELECT NOME FROM CLUBES UNION (SELECT PAIS FROM SELECOES)
 SELECT FEDERACAO, NOME, POSICAO
 FROM JOGADORES J, DE_LINHA L
 WHERE J.ID = L.ID
-AND J.NUMERO_CAMISA LIKE '_0'
+AND J.NUMERO_CAMISA LIKE '_0';
 
 -- Rede social de jogadores que jogam em times do seu continente de origem
 
