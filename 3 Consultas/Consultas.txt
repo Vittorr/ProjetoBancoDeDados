@@ -110,7 +110,7 @@ AND J.CLUBE IN (
 -- Técnicos ordenados pela quantidade de podios da sua seleção nas últimas 6 copas, depois alfabeticamente, exibindo a quantidade de títulos da seleção
 
 SELECT T.NOME, COUNT(POSICAO) as QTD_PODIO
-FROM TECNICO T, COMPETIU C
+FROM TECNICOS T, COMPETIU C
 WHERE T.FEDERACAO = C.FEDERACAO
 GROUP BY T.NOME
 ORDER BY QTD_PODIO DESC, T.NOME;
