@@ -1,0 +1,173 @@
+Procedimento 1 (com cursor): Procedimento que imprime no console os jogadores de uma determinada seleção que possuem conta no Twitter.
+
+
+CREATE OR REPLACE PROCEDURE listar_jogadores_twitter(nome_selecao IN VARCHAR2)
+IS
+  c_jogadores SYS_REFCURSOR;
+  nome_jogador JOGADORES.NOME%TYPE;
+  username REDES_SOCIAIS.USERNAME%TYPE;
+BEGIN
+  OPEN c_jogadores FOR
+  SELECT J.Nome, R.Username
+  FROM JOGADORES J
+  JOIN REDES_SOCIAIS R ON J.Id = R.Id
+  JOIN SELECOES S ON J.federacao = S.federacao
+  WHERE S.Pais = nome_selecao AND R.Rede_Social = 'Twitter';
+  
+  LOOP
+    FETCH c_jogadores INTO nome_jogador, username;
+    EXIT WHEN c_jogadores%NOTFOUND;
+    dbms_output.put_line(nome_jogador || ' - ' || username);
+  END LOOP;
+  
+  CLOSE c_jogadores;
+END;
+
+
+Exemplo de Chamada:
+BEGIN
+  listar_jogadores_com_twitter('Brasil');
+END;
+
+
+
+Procedimento 2 (com cursor): Procedimento para selecionar todos os jogos que um determinado país participou e imprimir na tela as informações do jogo, data e fase da competição.
+
+
+CREATE OR REPLACE PROCEDURE listar_jogos_por_pais(p_nome_pais IN VARCHAR2)
+IS
+  CURSOR c_jogos_por_pais IS
+    SELECT j.Data_Jogo, j.Fase, s1.federacao AS Selecao_Mandante, s2.federacao AS Selecao_Visitante
+    FROM JOGO j
+    JOIN SELECOES s1 ON j.Selecao_Mandante = s1.federacao
+    JOIN SELECOES s2 ON j.Selecao_Visitante = s2.federacao
+    WHERE s1.Pais = p_nome_pais OR s2.Pais = p_nome_pais;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Lista de jogos que o país ' || p_nome_pais || ' participou:');
+  FOR r_jogo IN c_jogos_por_pais LOOP
+    DBMS_OUTPUT.PUT_LINE(r_jogo.Data_Jogo || ' - ' || r_jogo.Fase || ' - ' || r_jogo.Selecao_Mandante || ' x ' || r_jogo.Selecao_Visitante);
+  END LOOP;
+END;
+
+
+
+Exemplo de Chamada:
+BEGIN
+  listar_jogos_por_pais('Argentina');
+END;
+
+
+
+
+
+Procedimento 3: Procedimento para selecionar todos os times que os jogadores de uma determinada seleção jogam quando não estão atuando pela seleção do seu país.
+
+
+CREATE OR REPLACE PROCEDURE listarjogadores_selecao (
+    nome_selecao IN VARCHAR2
+)
+IS
+BEGIN
+    dbms_output.put_line('Segue abaixo uma lista dos times onde os jogadores da seleção ' || nome_selecao || ' Atuam ');
+    FOR j IN (SELECT Nome, Clube FROM JOGADORES WHERE federacao = (SELECT federacao FROM SELECOES WHERE Pais = nome_selecao))
+    LOOP
+        dbms_output.put_line(j.Nome || ' - ' || j.Nome_Time);
+    END LOOP;
+END;
+
+
+
+Exemplo de Chamada:
+BEGIN
+  listar_jogadores_selecao('Brasil');
+END;
+
+
+
+Procedimento 4 (com gatilho): Procedimento para atualizar a rede social de um determinado jogador, onde o usuário informa o nome do jogador, a rede social a ser alterada e o novo nome de usuário a ser atualizado.
+
+
+CREATE OR REPLACE PROCEDURE altera_rede_social (
+    p_nome_jogador IN VARCHAR2,
+    p_rede_social IN VARCHAR2,
+    p_username IN VARCHAR2
+) AS
+    v_id_jogador JOGADORES.ID%TYPE;
+BEGIN
+    -- Obtém o ID do jogador pelo nome
+    SELECT ID INTO v_id_jogador
+    FROM JOGADORES
+    WHERE Nome = p_nome_jogador;
+    
+    -- Atualiza a rede social do jogador
+    UPDATE REDES_SOCIAIS
+    SET Username = p_username
+    WHERE Id = v_id_jogador
+        AND Rede_Social = p_rede_social;
+        
+    DBMS_OUTPUT.PUT_LINE('Rede social ' || p_rede_social || ' do jogador ' || p_nome_jogador || ' alterada com sucesso!');
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Jogador ' || p_nome_jogador || ' não encontrado!');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLCODE || ' - ' || SQLERRM);
+END;
+
+
+
+Exemplo de Chamada:
+BEGIN
+    altera_rede_social('Neymar Jr', 'Instagram', 'originalneymarjr');
+END;
+
+
+
+Gatilho para a alteração da rede social de um jogador:
+
+CREATE OR REPLACE TRIGGER TRG_REDE_SOCIAL_ALTERADA
+AFTER UPDATE OF Username ON REDES_SOCIAIS
+FOR EACH ROW
+BEGIN
+    IF UPDATING AND :OLD.Username != :NEW.Username THEN
+        DBMS_OUTPUT.PUT_LINE('Os registros de rede social sofreram alterações, foi atualizado de ' || :OLD.Username || ' para ' || :NEW.Username);
+    END IF;
+END;
+/
+
+
+Procedimento 5 (sem argumentos): Procedimento para selecionar todos os participantes da competição e imprime o nome da confederação nacional e o país correspondente
+
+
+CREATE OR REPLACE PROCEDURE mostrar_selecoes AS
+BEGIN
+  FOR s IN (SELECT * FROM SELECOES)
+  LOOP
+    DBMS_OUTPUT.PUT_LINE(s.federacao || ' (' || s.Pais || ')');
+  END LOOP;
+END;
+
+
+Exemplo de Chamada:
+BEGIN
+  mostrar_selecoes;
+END;
+
+
+Procedimento 6: Procedimento para fornecer informações de data, fase e confederações competindo em um determinado jogo a partir de um id de jogo.
+
+
+CREATE OR REPLACE PROCEDURE mostrar_jogo(p_id IN JOGOS.ID%TYPE) AS
+  v_jogo JOGOS%ROWTYPE;
+BEGIN
+  SELECT * INTO v_jogo FROM JOGOS WHERE ID = p_id;
+  DBMS_OUTPUT.PUT_LINE('Data: ' || TO_CHAR(v_jogo.Data_Jogo, 'DD/MM/YYYY'));
+  DBMS_OUTPUT.PUT_LINE('Fase: ' || v_jogo.Fase);
+  DBMS_OUTPUT.PUT_LINE(v_jogo.Selecao_Mandante || ' vs ' || v_jogo.Selecao_Visitante);
+END;
+
+
+
+Exemplo de Chamada:
+BEGIN
+  mostrar_jogo(1); -- Exemplo: mostrar informações do jogo com ID = 1
+END;
