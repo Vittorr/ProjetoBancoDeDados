@@ -31,10 +31,8 @@ SELECT C.NOME, C.PAIS
 FROM CLUBES C
 WHERE EXISTS
 (SELECT *
-FROM CLUBES C1, PAISES P
-WHERE C1.PAIS = P.NOME
-AND P.CONTINENTE = 'Europa');
-
+FROM PAISES P
+WHERE C.PAIS = P.NOME AND P.CONTINENTE = 'Europa');
 
 -- Mostrar nome de times e seus países de equipes que são de países que não estão na Copa.(ANTI JOIN)
 
