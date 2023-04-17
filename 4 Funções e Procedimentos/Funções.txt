@@ -5,16 +5,7 @@ CREATE OR REPLACE FUNCTION quantidade_jogadores(pais IN VARCHAR2) RETURN NUMBER
 IS
   v_count NUMBER := 0;
 BEGIN
-  FOR r IN (SELECT j.id FROM jogadores
-  
-  
-  
-  
-  
-  
-  
-  
-  j JOIN selecoes s ON (j.federacao = s.federacao) WHERE s.pais = pais)
+  FOR r IN (SELECT j.id FROM jogadores j JOIN selecoes s ON (j.federacao = s.federacao) WHERE s.pais = pais)
   LOOP
     v_count := v_count + 1;
   END LOOP;
