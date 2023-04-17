@@ -48,6 +48,37 @@ WHERE NOT EXISTS (
 )
 ORDER BY C.PAIS;
 
+-- Mostrar o instagram do menino Ney (SUBCONSULTA ESCALAR)
+
+SELECT R.USERNAME AS INSTA
+FROM REDES_SOCIAIS R, JOGADORES J
+WHERE J.ID = R.ID
+AND R.REDE_SOCIAL = 'Instagram'
+AND J.NOME = 'Neymar Jr';
+
+-- Mostrar o nome de jogadores que jogam no mesmo clubes que Neymar e usam a mesma camisa na seleção (SUBCONSULTA LINHA)
+
+SELECT J.NOME
+FROM JOGADORES J
+WHERE (J.CLUBE, J.NUMERO_CAMISA) = 
+(SELECT J1.CLUBE, J1.NUMERO_CAMISA
+FROM JOGADORES J1
+WHERE J1.NOME = 'Neymar Jr');
+
+-- Projetar os jogadores de cada seleção - e o seu país - que usam a mesma camisa que o Neymar (CONSULTA TABELA)
+
+SELECT S.PAIS, J.NOME
+FROM SELECOES S, JOGADORES J
+WHERE J.FEDERACAO = S.FEDERACAO
+AND J.NUMERO_CAMISA =
+(SELECT J1.NUMERO_CAMISA
+FROM JOGADORES J1
+WHERE J1.NOME = 'Neymar Jr');
+
+-- Listar todas seleções e clubes (OPERAÇÃO DE CONJUNTO)
+
+SELECT NOME FROM CLUBES UNION (SELECT PAIS FROM SELECOES)
+
 -- Federação, nome e posição dos jogadores que possuem camisas com a numeração finalizando em 0
 
 SELECT FEDERACAO, NOME, POSICAO
@@ -103,34 +134,3 @@ SELECT J.NOME, J1.NOME
 FROM GOLEIROS G JOIN JOGADORES J ON (J.ID=G.ID), 
     GOLEIROS G1 JOIN JOGADORES J1 ON (G1.ID= J1.ID) 
 WHERE G.GOLEIRO_TITULAR IS NOT NULL AND J1.ID = G.GOLEIRO_TITULAR;
-
--- Mostrar o instagram do menino Ney (SUBCONSULTA ESCALAR)
-
-SELECT R.USERNAME AS INSTA
-FROM REDES_SOCIAIS R, JOGADORES J
-WHERE J.ID = R.ID
-AND R.REDE_SOCIAL = 'Instagram'
-AND J.NOME = 'Neymar Jr';
-
--- Mostrar o nome de jogadores que jogam no mesmo clubes que Neymar e usam a mesma camisa na seleção (SUBCONSULTA LINHA)
-
-SELECT J.NOME
-FROM JOGADORES J
-WHERE (J.CLUBE, J.NUMERO_CAMISA) = 
-(SELECT J1.CLUBE, J1.NUMERO_CAMISA
-FROM JOGADORES J1
-WHERE J1.NOME = 'Neymar Jr');
-
--- Projetar os jogadores de cada seleção - e o seu país - que usam a mesma camisa que o Neymar (CONSULTA TABELA)
-
-SELECT S.PAIS, J.NOME
-FROM SELECOES S, JOGADORES J
-WHERE J.FEDERACAO = S.FEDERACAO
-AND J.NUMERO_CAMISA =
-(SELECT J1.NUMERO_CAMISA
-FROM JOGADORES J1
-WHERE J1.NOME = 'Neymar Jr');
-
--- Listar todas seleções e clubes (OPERAÇÃO DE CONJUNTO)
-
-SELECT NOME FROM CLUBES UNION (SELECT PAIS FROM SELECOES)
