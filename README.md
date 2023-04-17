@@ -19,27 +19,27 @@
 ## :trophy: Motivação
 - <Explicação do minimundo do projeto>
   
-## :pencil: Requisitos do trabalho
-- Na construção dos modelos:
+## :pencil: Requisitos da modelagem
+- Como explicado anteriormente, a modelagem do banco foi construída a partir do contexto da Copa do Mundo 2022, que aconteceu no Catar entre novembro e dezembro do mesmo ano;
+- Não foram abordadas todas as informações do campeonato, mantendo-se um escopo restrito aos requisitos do projeto;
+- Os requisitos da modelagem foram minimamente atendidos da seguinte forma:
   - Atributos:
     - Composto, multivalorado, discriminador em relacionamento
+      - Endereço, Rede_Social, Plataforma
   - Relacionamentos:
     - Relacionamento 1:1, 1:N, N:M
+      - Selecao-Pais, Clube-Jogador, Selecao-Campeonato
     - Relacionamento parcial-total, parcial-parcial
+      - Pais-Selecao, Jogador-Clube
     - Relacionamento Unário ou Auto Relacionamento, Binário, N-ário
+      - Goleiro-Goleiro, Jogador-Selecao, Emissora-Pais-Jogo
     - Relacionamento Identificador ou Entidade Fraca 
-  - Entidade Associativa
-  - Herança (qualquer tipo)
-  
-- Nas consultas:
-  - Group by/Having
-  - Junção interna, externa
-  - Semi-junção, anti-junção
-  - Subconsulta do tipo escalar, do tipo linha, do tipo tabela
-  - Operação de conjunto
-
-## :books: Sobre a modelagem
-- <Explicação da modelagem>
+      - Transmissao, Tecnico-Selecao
+  - Outros:
+    - Entidade Associativa
+      - Competiu
+    - Herança (qualquer tipo)
+      - Jogador-Goleiro-De_Linha
 
 ## :house: Sobre o povoamento
 - O escopo do povoamento do banco foi reduzido para que a massa de dados não se tornasse muito extensa;
@@ -63,8 +63,15 @@
   - 5 jogos/partidas;
   - 43 redes sociais (~8 por seleção).
 
-## :apple: Sobre as consultas
-- <Explicação das consultas>
+## :books: Sobre as consultas
+- Além de atender os requisitos do projeto, as consultas foram pensadas pelo grupo de maneira a percorrerem todas as entidades da modelagem, se aproveitando de todas as informações captadas;
+ 
+- Requisitos das consultas:
+  - Group by/Having
+  - Junção interna, externa
+  - Semi-junção, anti-junção
+  - Subconsulta do tipo escalar, do tipo linha, do tipo tabela
+  - Operação de conjunto
 
 
 
