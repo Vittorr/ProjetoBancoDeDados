@@ -1,0 +1,176 @@
+Função 1: Função que recebe o nome de um país e retorna o número de jogadores que o compõem.
+
+
+CREATE OR REPLACE FUNCTION quantidade_jogadores(pais IN VARCHAR2) RETURN NUMBER
+IS
+  v_count NUMBER := 0;
+BEGIN
+  FOR r IN (SELECT j.id FROM jogador j JOIN selecoes s ON (j.federacao = s.federacao) WHERE s.pais = pais)
+  LOOP
+    v_count := v_count + 1;
+  END LOOP;
+  
+  DBMS_OUTPUT.PUT_LINE('O país ' || pais || ' tem ' || v_count || ' jogadores.');
+  
+  RETURN v_count;
+END;
+
+
+Exemplo de Chamada:
+select quantidade_jogadores('Brasil') from dual 
+
+
+
+
+
+Função 2: Função que retorna o número de jogadores de uma determinada posição em uma federação.
+
+
+CREATE OR REPLACE FUNCTION NUM_JOGADORES_POSICAO(
+    v_federacao IN VARCHAR2,
+    v_posicao IN VARCHAR2
+)
+RETURN NUMBER
+AS
+    v_num_jogadores NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO v_num_jogadores
+    FROM JOGADORES j, DE_LINHA d
+    WHERE j.federacao = v_federacao AND j.Id = d.Id AND d.Posicao = v_posicao;
+    
+    RETURN v_num_jogadores;
+END;
+
+
+
+Exemplo de Chamada:
+select NUM_JOGADORES_POSICAO('CBF', ‘Defensor’) from dual 
+
+
+
+
+Função 3 (sem argumentos): Função que retorna o número de seleções para cada continente presente no banco de dados
+
+
+CREATE FUNCTION selecoes_por_continente RETURN VARCHAR2
+IS
+    output VARCHAR2(4000) := '';
+BEGIN
+    FOR rec IN (SELECT Continente, COUNT(*) as Total FROM SELECOES s JOIN PAISES p ON s.Pais = p.Nome GROUP BY Continente)
+    LOOP
+        output := output || rec.Continente || ': ' || rec.Total || ' seleções' || CHR(10);
+    END LOOP;
+    RETURN output;
+END;
+
+
+
+
+Exemplo de Chamada:
+BEGIN
+  DBMS_OUTPUT.PUT_LINE(selecoes_por_continente);
+END;
+
+
+
+
+Função 4: Função que retorna o número de títulos que uma determinada federação já conquistou.
+
+CREATE OR REPLACE FUNCTION qtd_titulos_por_federacao(f_fed IN VARCHAR2) RETURN NUMBER 
+AS 
+  v_qtd NUMBER; 
+BEGIN 
+  SELECT COUNT(*) INTO v_qtd FROM competiu WHERE federacao = f_fed AND posicao = 1; 
+DBMS_OUTPUT.PUT_LINE(f_fed || ' tem ' || v_qtd || ' títulos de campeão do mundo.'); 
+  RETURN v_qtd; 
+END;
+
+
+
+
+Exemplo de Chamada:
+
+select qtd_titulos_por_federacao('AFA') from dual
+
+
+
+Função 5: Função que recebe do usuário o nome de um goleiro e retorna se ele é reserva ou titular, se ele for reserva retornar qual o goleiro titular que ele é reserva
+
+
+CREATE OR REPLACE FUNCTION consultar_goleiro (nome_goleiro VARCHAR2) 
+RETURN VARCHAR2 
+IS 
+    goleiro_id INT; 
+    goleiro_titular_id INT; 
+    titular VARCHAR2(80); 
+BEGIN 
+    SELECT Id INTO goleiro_id FROM JOGADORES WHERE Nome = nome_goleiro; 
+ 
+    SELECT Goleiro_Titular INTO goleiro_titular_id FROM GOLEIROS WHERE Id = goleiro_id; 
+ 
+    IF goleiro_titular_id IS NULL THEN 
+        RETURN nome_goleiro || ' é o goleiro titular.'; 
+    ELSE 
+        SELECT Nome INTO titular FROM JOGADORES WHERE Id = goleiro_titular_id; 
+        RETURN nome_goleiro || ' é o goleiro reserva de ' || titular || '.'; 
+    END IF; 
+ 
+    DBMS_OUTPUT.PUT_LINE('Consulta realizada com sucesso!'); 
+EXCEPTION 
+    WHEN NO_DATA_FOUND THEN 
+        RETURN 'O goleiro ' || nome_goleiro || ' não foi encontrado.'; 
+END;
+
+
+
+
+
+Exemplo de Chamada:
+
+BEGIN 
+    DBMS_OUTPUT.PUT_LINE(consultar_goleiro('Weverton')); 
+END;
+
+
+
+Função 6: Função que recebe como parâmetro o ano da competição e retorna os países que compõem seu pódio.
+
+
+CREATE OR REPLACE FUNCTION obter_podio(p_ano NUMBER)
+RETURN VARCHAR2
+IS
+  v_pais_1 SELECOES.Pais%TYPE;
+  v_pais_2 SELECOES.Pais%TYPE;
+  v_pais_3 SELECOES.Pais%TYPE;
+BEGIN
+  SELECT s1.Pais, s2.Pais, s3.Pais
+  INTO v_pais_1, v_pais_2, v_pais_3
+  FROM SELECOES s1, SELECOES s2, SELECOES s3, COMPETIU c1, COMPETIU c2, COMPETIU c3, CAMPEONATO cp
+  WHERE c1.federacao = s1.federacao
+  AND c2.federacao = s2.federacao
+  AND c3.federacao = s3.federacao
+  AND c1.Ano = c2.Ano
+  AND c1.Ano = c3.Ano
+  AND c1.Posicao = 1
+  AND c2.Posicao = 2
+  AND c3.Posicao = 3
+  AND c1.Ano = p_ano
+  AND c2.Ano = p_ano
+  AND c3.Ano = p_ano
+  AND cp.Ano = p_ano;
+
+  RETURN '1º lugar: ' || v_pais_1 || CHR(10) || '2º lugar: ' || v_pais_2 || CHR(10) || '3º lugar: ' || v_pais_3;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    RETURN 'Não foram encontrados resultados para o ano informado.';
+  WHEN OTHERS THEN
+    RETURN 'Ocorreu um erro ao processar a solicitação. Favor contactar o administrador do sistema.';
+END;
+
+
+
+Exemplo de Chamada:
+
+BEGIN 
+    DBMS_OUTPUT.PUT_LINE(obter_podio(2022)); 
+END;
