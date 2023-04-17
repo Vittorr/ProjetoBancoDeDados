@@ -1,1 +1,76 @@
+-- Mostrar nome dos jogadores que atuam em times do mesmo país que sua seleção, separados por seleção, mas somente se a seleção contém mais do que 3 jogadores atuando em times de seu país. (GROUP BY/HAVING)
 
+SELECT J.NOME
+FROM JOGADORES J, SELECOES S, CLUBES C
+WHERE J.CLUBE = C.NOME
+AND C.PAIS = S.PAIS
+AND J.FEDERACAO = S.FEDERACAP
+GROUP BY J.FEDERACAO
+HAVING COUNT(*) > 3;
+
+-- Mostrar nome do país das seleções que vão jogar um jogo, além de sua data. (INNER JOIN)
+
+SELECT S1.PAIS AS MANDANTE, S2.PAIS AS VISITANTE,  J.DATA_JOGO
+FROM JOGOS J 
+INNER JOIN SELECOES S1 ON
+S1.FEDERACAO = J.SELECAO_MANDANTE
+INNER JOIN SELECOES S2 ON
+S2.FEDERACAO = J.SELECAO_VISITANTE;
+
+-- Listar países que jogarão a copa do mundo e times desses países (caso tenham). (LEFT OUTER JOIN)
+
+SELECT C.PAIS, C.NOME
+FROM CLUBES C
+LEFT OUTER JOIN SELECOES S ON
+C.PAIS = S.PAIS
+ORDER BY S.PAIS;
+
+-- Mostrar nome de times e seus países de equipes que são de países que não estão na Copa.(ANTI JOIN)
+
+SELECT C.NOME, C.PAIS
+FROM CLUBES C
+JOIN PAISES P ON C.PAIS = P.NOME
+WHERE NOT EXISTS (
+    SELECT *
+    FROM SELECOES S
+    WHERE S.PAIS = C.PAIS
+)
+ORDER BY C.PAIS;
+
+-- Federação, nome e posição dos jogadores que possuem camisas com a numeração finalizando em 0
+
+SELECT FEDERACAO, NOME, POSICAO
+FROM JOGADORES J, DE_LINHA L
+WHERE J.ID = L.ID
+AND J.NUMERO_CAMISA LIKE '_0'
+
+-- Rede social de jogadores que jogam em times do seu continente de origem
+
+SELECT REDE_SOCIAL, USERNAME
+FROM REDES_SOCIAIS R, JOGADORES J
+WHERE R.ID = J.ID
+AND J.CLUBE IN (
+    SELECT C.NOME
+    FROM CLUBES C 
+    WHERE C.PAIS IN (
+    	SELECT P.NOME
+    	FROM PAISES P
+    	WHERE P.CONTINENTE = (
+    		SELECT P1.CONTINENTE
+    		FROM PAISES P1
+    		WHERE P1.NOME = (
+    			SELECT S.PAIS
+    			FROM SELECOES S
+    			WHERE S.FEDERACAO = J.FEDERACAO
+            )
+        )
+    )
+);
+
+-- Técnicos ordenados pela quantidade de podios da sua seleção nas últimas 6 copas, depois alfabeticamente, exibindo a quantidade de títulos da seleção
+
+SELECT T.NOME, COUNT(POSICAO) as QTD_PODIO
+FROM TECNICO T, COMPETIU C
+WHERE T.FEDERACAO = C.FEDERACAO
+GROUP BY T.NOME
+ORDER BY QTD_PODIO DESC, T.NOME;
