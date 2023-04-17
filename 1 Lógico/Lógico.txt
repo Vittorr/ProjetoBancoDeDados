@@ -14,7 +14,7 @@
   Selecao_Mandante⇒ Selecoes (Federacao)
   Selecao_Visitante ⇒ Selecoes (Federacao)
 
-7. Clubes (Nome, Pais , …)
+7. Clubes (Nome, Pais! , …)
   Pais => Paises (Nome)
 
 8. Jogadores (Id, Federacao! , Nome, Numero_Camisa, Clube,  …)
