@@ -1,46 +1,44 @@
-Projeto Lógico
+1. Paises (Nome, Continente …)
 
-1. País (Nome, Continente …)
+2. Selecoes (Federacao, end_CodigoPostal, end_Logradouro, end_Numero, [Pais]! , …)
+  Pais => Paises(Nome)
 
-2. Seleção (Confederação Nacional, end_CodigoPostal, end_Logradouro, end_Numero, [nomePais]! , …)
-  nomePais => País(Nome)
+3. Tecnicos (Federacao, Nome, Data_Nascimento, …)
+  Federacao ⇒ Selecoes (Federacao)
 
-3. Técnico (ConfederaçaoNacional, Nome, DataNascimento, …)
-  ConfederaçaoNacional ⇒ Seleção (Confederação Nacional)
+4. Campeonatos (Ano, …)
 
-4. Campeonato (Ano, …)
+5. Emissoras (Cadastro, Nome…)
 
-5. Emissora (Cadastro_Empresa, Nome…)
+6. Jogos (Id, Data_jogo, Selecao_Mandante! , Selecao_Visitante! , Fase,  …)
+  Selecao_Mandante⇒ Selecoes (Federacao)
+  Selecao_Visitante ⇒ Selecoes (Federacao)
 
-6. Jogo (ID Artificial, Data, Seleção_Mandante! , Seleção_Visitante! , Fase,  …)
-   Seleção_Mandante⇒ Seleção (Confederação Nacional)
-   Seleção_Visitante ⇒ Seleção (Confederação Nacional)
+7. Clubes (Nome, Pais , …)
+  Pais => Paises (Nome)
 
-7. Time (Nome, nomePais! , …)
-  nomePais => País(Nome)
+8. Jogadores (Id, Federacao! , Nome, Numero_Camisa, Clube,  …)
+  Federacao ⇒ Selecoes (Federacao)
+  Clube => Clubes(Nome)
 
-8. Jogador (ID Artificial, ConfederaçaoNacional! , Nome, Numero Camisa, nomeTime,  …)
-ConfederaçaoNacional ⇒ Seleção (Confederação Nacional)
-  nomeTime => Time(Nome)
+8.1 Redes_Sociais (Id, Username, Rede_Social)
+  Id => Jogadores(Id)
 
-8.1 Rede_Social (ID, Arroba, Plataforma)
-ID => Jogador(ID Artificial)
+9. Goleiros (Id, Goleiro_Titular, …)
+  Id => Jogadores(Id)
+  Goleiro_Titular ⇒ Goleiros (Id)
 
-9. Goleiro (ID, goleiro_Titular, …)
-  ID => Jogador(ID Artificial)
-  goleiro_Titular ⇒ Goleiro (ID)
+10. De_Linha (Id, posicao …)
+  Id => Jogadores(Id)
 
-10. De linha (ID, posição …)
-  ID => Jogador(ID Artificial)
+11. Podios (Posicao, …)
 
-11. Pódio (Posição, …)
+12. Competiu (Federacao, Ano, Posicao, …)
+  Federacao ⇒ Selecoes (Federacao)
+  Ano ⇒ Campeonatos (Ano)
+  Posicao => Podios (Posicao)
 
-12. Competiu (ConfederaçaoNacional, Ano, Posição, …)
-    ConfederaçaoNacional ⇒ Seleção (Confederação Nacional)
-    Ano ⇒ Campeonato (Ano)
-    Posição => Pódio (Posição)
-
-13. Transmissão (CadastroEmpresa, NomePais, IDdoJogo, Plataforma, …)
-   CadastroEmpresa ⇒ Emissora (CadastroEmpresa)
-   NomePais ⇒ País (Nome)
-   IDdoJogo ⇒ Jogo (ID Artificial)
+13. Transmissoes (Cadastro, Pais, Id, Plataforma, …)
+  Cadastro ⇒ Emissoras (Cadastro)
+  Pais ⇒ Paises (Nome)
+  Id ⇒ Jogos (Id)
