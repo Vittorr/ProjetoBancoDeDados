@@ -16,11 +16,13 @@
 - Thiago Botelho Rodrigues
 - Vinícius Marçal de Araújo
 
-## :trophy: Motivação
-- <Explicação do minimundo do projeto>
+## :trophy: Visão geral
+- O projeto se refere a captação de dados sobre a Copa do Mundo 2022, realizada no Catar;
+- O foco principal foi o mapeamento dessa competição em específico, e não de todas as edições da competição;
+- Para a construção da modelagem foram levadas em consideração requisitos que focam em abranger todo o material estudado na disciplina de Banco de Dados.
   
 ## :pencil: Requisitos da modelagem
-- Como explicado anteriormente, a modelagem do banco foi construída a partir do contexto da Copa do Mundo 2022, que aconteceu no Catar entre novembro e dezembro do mesmo ano;
+- Como explicado anteriormente, a modelagem do banco foi construída a partir do contexto da Copa do Mundo 2022;
 - Não foram abordadas todas as informações do campeonato, mantendo-se um escopo restrito aos requisitos do projeto;
 - Os requisitos da modelagem foram minimamente atendidos da seguinte forma:
   - Atributos:
@@ -44,19 +46,20 @@
 ## :house: Sobre o povoamento
 - O escopo do povoamento do banco foi reduzido para que a massa de dados não se tornasse muito extensa;
 - Para que fosse mantida a coerência no banco, foram escolhidas cinco seleções que jogaram entre si durante o torneio;
-- Assim sendo, as informações do banco englobam apenas as seguintes confederações:
+- Assim sendo, as informações do banco se aprofundam apenas nas seguintes federações:
   - Argentina (AFA); 
   - Austrália (FFA); 
   - Brasil (CBF); 
   - Croácia (HNS); 
   - França (FFF).
+
 - Com isso, temos como base:
   - 32 seleções (5 detalhadas);
   - 5 técnicos;
-  - 129 jogadores (26 por seleção*);
+  - 129 jogadores (26 por seleção destacada*);
     - 15 goleiros;
     - 114 jogadores de linha;
-    - *O francês Karim Benzema foi cortado por lesão antes do torneio começar.
+    - *O francês Karim Benzema foi cortado por lesão antes do torneio começar;
   - 70 clubes de futebol;
   - 37 países;
   - 6 emissoras;
@@ -68,9 +71,13 @@
  
 - Requisitos das consultas:
   - Group by/Having
-  - Junção interna, externa
-  - Semi-junção, anti-junção
-  - Subconsulta do tipo escalar, do tipo linha, do tipo tabela
+  - Junção interna
+  - Junção externa
+  - Semi-junção
+  - Anti-junção
+  - Subconsulta do tipo escalar
+  - Subconsulta do tipo linha
+  - Subconsulta do tipo tabela
   - Operação de conjunto
 
 
