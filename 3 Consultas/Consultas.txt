@@ -1,15 +1,36 @@
 -- Mostrar nome dos jogadores que atuam em times do mesmo país que sua seleção, separados por seleção, mas somente se a seleção contém mais do que 3 jogadores atuando em times de seu país. (GROUP BY/HAVING)
 
-SELECT J1.NOME
+SELECT J1.NOME, J1.FEDERACAO, J1.CLUBE
 FROM JOGADORES J1
-WHERE J1.FEDERACAO IN (SELECT J.FEDERACAO
+WHERE J1.FEDERACAO = (
+    -- se o pais do jogador é igual o pais do seu clube
+    SELECT S1.FEDERACAO
+    FROM SELECOES S1
+    WHERE J1.CLUBE IN (
+    	SELECT C1.NOME
+    	FROM CLUBES C1
+    	WHERE C1.PAIS = S1.PAIS
+    ))
+AND J1.FEDERACAO IN (
+    -- se a federacao tem o minimo de jogadores jogando em times nacionais
+    SELECT J.FEDERACAO
+	FROM JOGADORES J, SELECOES S, CLUBES C
+	WHERE J.CLUBE = C.NOME
+		AND C.PAIS = S.PAIS
+		AND J.FEDERACAO = S.FEDERACAO
+	GROUP BY J.FEDERACAO
+	HAVING COUNT(*) > 3
+    );
+
+-- Mostrar somente as seleção que contém mais do que 3 jogadores atuando em times de seu país, e a quantidade de jogadores. (GROUP BY/HAVING)
+SELECT J.FEDERACAO
 FROM JOGADORES J, SELECOES S, CLUBES C
 WHERE J.CLUBE = C.NOME
 AND C.PAIS = S.PAIS
 AND J.FEDERACAO = S.FEDERACAO
 GROUP BY J.FEDERACAO
-HAVING COUNT(*) > 3);
-
+HAVING COUNT(*) > 3
+    
 -- Mostrar nome do país das seleções que vão jogar um jogo, além de sua data. (INNER JOIN)
 
 SELECT S1.PAIS AS MANDANTE, S2.PAIS AS VISITANTE,  J.DATA_JOGO
