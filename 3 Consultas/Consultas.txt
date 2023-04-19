@@ -22,6 +22,21 @@ AND J1.FEDERACAO IN (
 	HAVING COUNT(*) > 3
     );
 
+-- Jogadores que jogam em seus países de origem e usam números de camisa entre 1 e 10
+
+SELECT J.NOME, J.FEDERACAO, J.CLUBE
+FROM (SELECT *
+	FROM JOGADORES J1
+	WHERE J1.FEDERACAO IN (
+		SELECT S1.FEDERACAO
+    		FROM SELECOES S1
+    		WHERE J1.CLUBE IN (
+    			SELECT C1.NOME
+    			FROM CLUBES C1
+    			WHERE C1.PAIS = S1.PAIS)
+    )) J
+WHERE J.NUMERO_CAMISA < 11;
+
 -- Mostrar somente as seleção que contém mais do que 3 jogadores atuando em times de seu país, e a quantidade de jogadores. (GROUP BY/HAVING)
 SELECT J.FEDERACAO
 FROM JOGADORES J, SELECOES S, CLUBES C
@@ -39,14 +54,6 @@ INNER JOIN SELECOES S1 ON
 S1.FEDERACAO = J.SELECAO_MANDANTE
 INNER JOIN SELECOES S2 ON
 S2.FEDERACAO = J.SELECAO_VISITANTE;
-
--- Listar países que jogarão a copa do mundo e times desses países (caso tenham). (LEFT OUTER JOIN)
-
-SELECT C.PAIS, C.NOME
-FROM CLUBES C
-LEFT OUTER JOIN SELECOES S ON
-C.PAIS = S.PAIS
-ORDER BY S.PAIS;
 
 -- Mostrar nome de clubes e país de origem de clubes da europa (SEMI JOIN)
 
@@ -69,13 +76,15 @@ WHERE NOT EXISTS (
 )
 ORDER BY C.PAIS;
 
--- Mostrar o instagram do menino Ney (SUBCONSULTA ESCALAR)
+-- Mostrar o instagram do Neymar (SUBCONSULTA ESCALAR)
 
-SELECT R.USERNAME AS INSTA
-FROM REDES_SOCIAIS R, JOGADORES J
-WHERE J.ID = R.ID
-AND R.REDE_SOCIAL = 'Instagram'
-AND J.NOME = 'Neymar Jr';
+SELECT J.NOME, S.PAIS
+FROM SELECOES S, JOGADORES J
+WHERE J.FEDERACAO = S.FEDERACAO
+AND J.NUMERO_CAMISA =
+(SELECT J1.NUMERO_CAMISA
+FROM JOGADORES J1
+WHERE J1.NOME = 'Neymar Jr');
 
 -- Mostrar o nome de jogadores que jogam no mesmo clubes que Neymar e usam a mesma camisa na seleção (SUBCONSULTA LINHA)
 
@@ -86,26 +95,9 @@ WHERE (J.CLUBE, J.NUMERO_CAMISA) =
 FROM JOGADORES J1
 WHERE J1.NOME = 'Neymar Jr');
 
--- Projetar os jogadores de cada seleção - e o seu país - que usam a mesma camisa que o Neymar (CONSULTA TABELA)
-
-SELECT J.NOME, S.PAIS
-FROM SELECOES S, JOGADORES J
-WHERE J.FEDERACAO = S.FEDERACAO
-AND J.NUMERO_CAMISA =
-(SELECT J1.NUMERO_CAMISA
-FROM JOGADORES J1
-WHERE J1.NOME = 'Neymar Jr');
-
 -- Listar todas seleções e clubes (OPERAÇÃO DE CONJUNTO);
 
 SELECT NOME FROM CLUBES UNION (SELECT PAIS FROM SELECOES)
-
--- Federação, nome e posição dos jogadores que possuem camisas com a numeração finalizando em 0
-
-SELECT FEDERACAO, NOME, POSICAO
-FROM JOGADORES J, DE_LINHA L
-WHERE J.ID = L.ID
-AND J.NUMERO_CAMISA LIKE '_0';
 
 -- Rede social de jogadores que jogam em times do seu continente de origem
 
@@ -125,6 +117,24 @@ AND J.CLUBE IN (
     			SELECT S.PAIS
     			FROM SELECOES S
     			WHERE S.FEDERACAO = J.FEDERACAO
+            )
+        )
+    )
+);
+
+SELECT REDE_SOCIAL, USERNAME
+FROM REDES_SOCIAIS R, JOGADORES J
+WHERE R.ID = J.ID
+AND J.CLUBE IN (
+    SELECT C.NOME
+    FROM CLUBES C JOIN PAISES P ON (C.PAIS = P.NOME)
+    WHERE P.CONTINENTE = (
+    	SELECT P1.CONTINENTE
+    	FROM PAISES P1
+    	WHERE P1.NOME = (
+    		SELECT S.PAIS
+    		FROM SELECOES S
+    		WHERE S.FEDERACAO = J.FEDERACAO
             )
         )
     )
