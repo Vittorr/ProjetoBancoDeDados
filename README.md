@@ -63,7 +63,7 @@
   - 70 clubes de futebol;
   - 37 países;
   - 6 emissoras;
-  - 5 jogos/partidas;
+  - 24 jogos/partidas;
   - 43 redes sociais (~8 por seleção).
 
 ## :books: Sobre as consultas
