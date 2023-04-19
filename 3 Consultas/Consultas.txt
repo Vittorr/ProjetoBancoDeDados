@@ -1,4 +1,18 @@
--- Mostrar nome dos jogadores que atuam em times do mesmo país que sua seleção, separados por seleção, mas somente se a seleção contém mais do que 3 jogadores atuando em times de seu país. (GROUP BY/HAVING)
+-- Redes sociais de jogadores que jogam na Inglaterra
+
+SELECT REDE_SOCIAL, USERNAME
+FROM REDES_SOCIAIS R
+WHERE R.ID IN (
+	SELECT J.ID
+	FROM JOGADORES J
+	WHERE J.CLUBE IN (
+		SELECT C.NOME 
+		FROM CLUBES C
+		WHERE C.PAIS = 'Inglaterra'
+	)
+);
+
+-- Mostrar nome dos jogadores que atuam em times do mesmo país que sua seleção, separados por seleção, mas somente se a seleção contém mais do que 3 jogadores atuando em times de seu país
 
 SELECT J1.NOME, J1.FEDERACAO, J1.CLUBE
 FROM JOGADORES J1
@@ -37,7 +51,8 @@ FROM (SELECT *
     )) J
 WHERE J.NUMERO_CAMISA < 11;
 
--- Mostrar somente as seleção que contém mais do que 3 jogadores atuando em times de seu país, e a quantidade de jogadores. (GROUP BY/HAVING)
+-- Mostrar somente as seleção que contém mais do que 3 jogadores atuando em times de seu país, e a quantidade de jogadores
+
 SELECT J.FEDERACAO
 FROM JOGADORES J, SELECOES S, CLUBES C
 WHERE J.CLUBE = C.NOME
@@ -45,26 +60,17 @@ AND C.PAIS = S.PAIS
 AND J.FEDERACAO = S.FEDERACAO
 GROUP BY J.FEDERACAO
 HAVING COUNT(*) > 3
-    
--- Mostrar nome do país das seleções que vão jogar um jogo, além de sua data. (INNER JOIN)
 
-SELECT S1.PAIS AS MANDANTE, S2.PAIS AS VISITANTE,  J.DATA_JOGO
-FROM JOGOS J 
-INNER JOIN SELECOES S1 ON
-S1.FEDERACAO = J.SELECAO_MANDANTE
-INNER JOIN SELECOES S2 ON
-S2.FEDERACAO = J.SELECAO_VISITANTE;
-
--- Mostrar nome de clubes e país de origem de clubes da europa (SEMI JOIN)
+-- Mostrar nome de clubes e país de origem de clubes das Américas
 
 SELECT C.NOME, C.PAIS
 FROM CLUBES C
 WHERE EXISTS
 (SELECT *
 FROM PAISES P
-WHERE C.PAIS = P.NOME AND P.CONTINENTE = 'Europa');
+WHERE C.PAIS = P.NOME AND P.CONTINENTE LIKE 'América%');
 
--- Mostrar nome de times e seus países de equipes que são de países que não estão na Copa.(ANTI JOIN)
+-- Mostrar nome de times e seus países de equipes que são de países que não estão na Copa
 
 SELECT C.NOME, C.PAIS
 FROM CLUBES C
@@ -76,17 +82,7 @@ WHERE NOT EXISTS (
 )
 ORDER BY C.PAIS;
 
--- Mostrar o instagram do Neymar (SUBCONSULTA ESCALAR)
-
-SELECT J.NOME, S.PAIS
-FROM SELECOES S, JOGADORES J
-WHERE J.FEDERACAO = S.FEDERACAO
-AND J.NUMERO_CAMISA =
-(SELECT J1.NUMERO_CAMISA
-FROM JOGADORES J1
-WHERE J1.NOME = 'Neymar Jr');
-
--- Mostrar o nome de jogadores que jogam no mesmo clubes que Neymar e usam a mesma camisa na seleção (SUBCONSULTA LINHA)
+-- Mostrar o nome de jogadores que jogam no mesmo clubes que Neymar e usam a mesma camisa na seleção
 
 SELECT J.NOME
 FROM JOGADORES J
@@ -94,10 +90,6 @@ WHERE (J.CLUBE, J.NUMERO_CAMISA) =
 (SELECT J1.CLUBE, J1.NUMERO_CAMISA
 FROM JOGADORES J1
 WHERE J1.NOME = 'Neymar Jr');
-
--- Listar todas seleções e clubes (OPERAÇÃO DE CONJUNTO);
-
-SELECT NOME FROM CLUBES UNION (SELECT PAIS FROM SELECOES)
 
 -- Rede social de jogadores que jogam em times do seu continente de origem
 
@@ -165,3 +157,14 @@ SELECT J.NOME, J1.NOME
 FROM GOLEIROS G JOIN JOGADORES J ON (J.ID=G.ID), 
     GOLEIROS G1 JOIN JOGADORES J1 ON (G1.ID= J1.ID) 
 WHERE G.GOLEIRO_TITULAR IS NOT NULL AND J1.ID = G.GOLEIRO_TITULAR;
+
+-- Projetar os jogadores de cada seleção, e o seu país, que usam a camisa com o mesmo número de Neymar
+
+SELECT J.NOME, S.PAIS
+FROM SELECOES S, JOGADORES J
+WHERE J.FEDERACAO = S.FEDERACAO
+AND J.NUMERO_CAMISA = (
+       SELECT J1.NUMERO_CAMISA
+       FROM JOGADORES J1
+       WHERE J1.NOME = 'Neymar Jr')
+AND J.NOME != 'Neymar Jr';
