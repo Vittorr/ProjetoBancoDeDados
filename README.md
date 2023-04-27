@@ -14,7 +14,7 @@
 - Paulo Vitor Alves de Oliveira
 - Rodrigo Medeiros Florencio Leal
 - Thiago Botelho Rodrigues
-- Vinícius Marçal de Araújo
+- Vinícius Marçal Araújo
 
 ## :trophy: Visão geral
 - O projeto se refere a captação de dados sobre a Copa do Mundo 2022, realizada no Catar;
